@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  database:
+    image: mysql
+    restart: on-failure
+    environment:
+      MYSQL_ROOT_PASSWORD: ${PASSWD}
+      MYSQL_DATABASE: wpdb
+      MYSQL_USER: ${USER}
+      MYSQL_PASSWORD: ${PASSWD}
+    volumes:
+      - ./mysql:/var/lib/mysql
+
+  wordpress:
+    depends_on:
+      - database
+      - phpmyadmin
+    image: wordpress:latest
+    restart: on-failure
+    ports:
+      - "80:80"
+    environment:
+      WORDPRESS_DB_HOST: database:3306
+      WORDPRESS_DB_USER: ${USER}
+      WORDPRESS_DB_PASSWORD: ${PASSWD}
+      WORDPRESS_DB_NAME: wpdb
+    volumes:
+      ["./:/var/www/html"]
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: on-failure
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
+    depends_on:
+      - database
+    environment:
+      PMA_HOST: database
+      PMA_USER: ${USER}
+      PMA_PASSWORD: ${PASSWD}
