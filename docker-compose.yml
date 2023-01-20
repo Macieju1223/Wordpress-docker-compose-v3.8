@@ -19,7 +19,7 @@ services:
     image: wordpress:latest
     restart: on-failure
     ports:
-      - "80:80"
+      - "8080:80"
     environment:
       WORDPRESS_DB_HOST: database:3306
       WORDPRESS_DB_USER: ${USER}
@@ -32,7 +32,7 @@ services:
     image: phpmyadmin
     restart: on-failure
     ports:
-      - 8080:80
+      - 8090:80
     environment:
       - PMA_ARBITRARY=1
     depends_on:
