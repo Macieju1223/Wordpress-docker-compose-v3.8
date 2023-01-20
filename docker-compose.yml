@@ -10,7 +10,7 @@ services:
       MYSQL_USER: ${USER}
       MYSQL_PASSWORD: ${PASSWD}
     volumes:
-      - ./mysql:/var/lib/mysql
+      - sql_volume:/var/lib/mysql
 
   wordpress:
     depends_on:
@@ -26,7 +26,7 @@ services:
       WORDPRESS_DB_PASSWORD: ${PASSWD}
       WORDPRESS_DB_NAME: wpdb
     volumes:
-      ["./:/var/www/html"]
+      ["wp_volume:/var/www/html"]
 
   phpmyadmin:
     image: phpmyadmin
@@ -41,3 +41,6 @@ services:
       PMA_HOST: database
       PMA_USER: ${USER}
       PMA_PASSWORD: ${PASSWD}
+volumes:
+  wp_volume:
+  sql_volume:
