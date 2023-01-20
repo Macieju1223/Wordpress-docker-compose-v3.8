@@ -16,5 +16,6 @@ ___
 > ## In your CLI:
 >- docker ps
 >- docker ps -a
+>- docker compose ls (docker compose ps) #older version
 ___
 ## Your db will store your session in mysql folder
