@@ -8,9 +8,9 @@ ___
 >- docker-compose up -d
 > ## Https adresses:
 >- phpmyadmin 
->> 127.0.0.1:8080
+>> 127.0.0.1:8090
 >- wordpress
->>127.0.0.1:80
+>>127.0.0.1:8080
 ___
 ## Check if your containers are running
 > ## In your CLI:
